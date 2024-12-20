@@ -4,7 +4,8 @@ class StringCalculator
 
   def self.add(numbers)
     return 0 if numbers.empty?
-    extracted_numbers = numbers.split(DEFAULT_SPLIT_OPERATOR).map(&:to_i)
+    delimiter = delimiter(numbers)
+    extracted_numbers = numbers.split(delimiter).map(&:to_i)
     
     handle_negative_numbers(extracted_numbers)
     extracted_numbers.sum

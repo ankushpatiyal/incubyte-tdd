@@ -28,6 +28,24 @@ describe StringCalculator do
         expect(calculator.add("3,4\n6")).to eq(13)
       end
     end
+
+    context 'when there is a different delimeter provided' do
+      it 'returns the sum of numbers after separating them on the basis of new delimeter' do
+        expect(calculator.add("//;\n2;8;3")).to be(13)
+      end
+    end
+
+    context 'when there are negative numbers in the input' do
+      it 'raise negative input error' do
+        expect { calculator.add('2,-8,3') }.to raise_error(Errors::NegativeInputError)
+      end
+    end
+
+    context 'when empty space in front and end of the string' do
+      it 'returns the sum of those numbers' do
+        expect(calculator.add(' 3,5 ')).to eq(8)
+      end
+    end
   end
 
   describe '.custom_delimitter?' do
