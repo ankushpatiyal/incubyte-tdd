@@ -16,9 +16,15 @@ describe StringCalculator do
       end
     end
 
-    context 'when 2 valid numbers separated by comma are give' do
+    context 'when multiple valid numbers separated by comma are given' do
       it 'should return the sum of those numbers' do
         expect(calculator.add('3,4')).to eq(7)
+      end
+    end
+
+    context 'when multiple valid numbers separated by comma or newline character are given' do
+      it 'should return the sum of those numbers' do
+        expect(calculator.add("3,4\n6")).to eq(13)
       end
     end
   end
