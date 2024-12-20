@@ -4,11 +4,15 @@ class StringCalculator
 
   def self.add(numbers)
     return 0 if numbers.empty?
-    delimiter = delimiter(numbers)
-    extracted_numbers = numbers.split(delimiter).map(&:to_i)
+    extracted_numbers = extract_numbers(numbers)
     
     handle_negative_numbers(extracted_numbers)
     extracted_numbers.sum
+  end
+
+  def self.extract_numbers(numbers)
+    delimiter = delimiter(numbers)
+    extracted_numbers = numbers.split(delimiter).map(&:to_i)
   end
 
   def self.custom_delimitter?(numbers)
