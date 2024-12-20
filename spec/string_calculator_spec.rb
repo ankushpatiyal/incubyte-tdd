@@ -1,4 +1,5 @@
 require_relative '../string_calculator'
+require_relative '../errors'
 
 describe StringCalculator do
   let!(:calculator) { StringCalculator }
@@ -57,17 +58,31 @@ describe StringCalculator do
     end
   end
 
-  describe '.negative_number_exists?' do
+  describe '.get_negative_numbers' do
     it 'returns true if it contains negative number' do
-      numbers = "1,-2,3"
+      numbers = [1,2,-2]
 
-      expect(calculator.negative_number_exists?(numbers)).to be_truthy
+      expect(calculator.get_negative_numbers(numbers)).to match_array([-2])
     end
 
     it 'returns false if it dose not contain negative number' do
-      numbers = "1,2,3,4"
+      numbers = [1,2,3,4]
 
-      expect(calculator.negative_number_exists?(numbers)).to be_falsey
+      expect(calculator.get_negative_numbers(numbers)).to be_empty
+    end
+  end
+
+  describe '.handle_negative_numbers' do
+    it 'should raise an error if negative numbers are present' do
+      numbers = [1,-2,3]
+
+      expect { calculator.handle_negative_numbers(numbers) }.to raise_error(Errors::NegativeInputError)
+    end
+
+    it 'should return nil if negative numbers are blank' do
+      numbers = [1,2,3,4]
+
+      expect(calculator.handle_negative_numbers(numbers)).to be_nil
     end
   end
 end

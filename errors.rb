@@ -3,6 +3,7 @@ module Errors
     NEGATIVE_INPUT_MESSAGE = 'Negative numbers not allowed'
 
     def initialize(numbers)
+      @numbers = numbers
       super(custom_error_message)
     end
 
