@@ -28,4 +28,32 @@ describe StringCalculator do
       end
     end
   end
+
+  describe '.custom_delimitter?' do
+    it 'returns true if custom delimiter is present' do
+      numbers = "//;\n1;2"
+
+      expect(calculator.custom_delimitter?(numbers)).to be(true)
+    end
+
+    it 'returns false if custom delimiter is not present' do
+      numbers = "1;2"
+      
+      expect(calculator.custom_delimitter?(numbers)).to be(false)
+    end
+  end
+
+  describe '.delimiter' do
+    it 'returns custom delimiter if it is present' do
+      numbers = "//;\n1;2"
+
+      expect(calculator.delimiter(numbers)).to eq(";")
+    end
+
+    it 'returns default delimiter if present' do
+      numbers = "2;3"
+
+      expect(calculator.delimiter(numbers)).to be(StringCalculator::DEFAULT_SPLIT_OPERATOR)
+    end
+  end
 end
