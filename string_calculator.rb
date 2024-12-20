@@ -7,4 +7,8 @@ class StringCalculator
     extracted_numbers = numbers.split(DEFAULT_SPLIT_OPERATOR).map(&:to_i)
     extracted_numbers.sum
   end
+
+  def self.custom_delimitter?(numbers)
+    numbers.start_with?("//")
+  end
 end
