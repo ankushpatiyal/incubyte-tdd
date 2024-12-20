@@ -19,4 +19,8 @@ class StringCalculator
     end
     DEFAULT_SPLIT_OPERATOR
   end
+
+  def self.negative_number_exists?(numbers)
+    numbers.include?("-")
+  end
 end
