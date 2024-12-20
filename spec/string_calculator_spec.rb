@@ -15,5 +15,11 @@ describe StringCalculator do
         expect(calculator.add('3')).to eq(3)
       end
     end
+
+    context 'when 2 valid numbers separated by comma are give' do
+      it 'should return the sum of those numbers' do
+        expect(calculator.add('3,4')).to eq(7)
+      end
+    end
   end
 end
