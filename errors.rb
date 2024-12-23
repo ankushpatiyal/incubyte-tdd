@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Errors
   class NegativeInputError < StandardError
     NEGATIVE_INPUT_MESSAGE = 'Negative numbers not allowed'

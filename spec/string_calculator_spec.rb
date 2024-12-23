@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../string_calculator'
 require_relative '../errors'
 
@@ -52,13 +54,13 @@ describe StringCalculator do
     it 'returns true if custom delimiter is present' do
       numbers = "//;\n1;2"
 
-      expect(calculator.custom_delimitter?(numbers)).to be(true)
+      expect(calculator.send(:custom_delimitter?, numbers)).to be(true)
     end
 
     it 'returns false if custom delimiter is not present' do
-      numbers = "1;2"
-      
-      expect(calculator.custom_delimitter?(numbers)).to be(false)
+      numbers = '1;2'
+
+      expect(calculator.send(:custom_delimitter?, numbers)).to be(false)
     end
   end
 
@@ -66,41 +68,41 @@ describe StringCalculator do
     it 'returns custom delimiter if it is present' do
       numbers = "//;\n1;2"
 
-      expect(calculator.delimiter(numbers)).to eq(";")
+      expect(calculator.send(:delimiter, numbers)).to eq(';')
     end
 
     it 'returns default delimiter if present' do
-      numbers = "2;3"
+      numbers = '2;3'
 
-      expect(calculator.delimiter(numbers)).to be(StringCalculator::DEFAULT_SPLIT_OPERATOR)
+      expect(calculator.send(:delimiter, numbers)).to be(StringCalculator::DEFAULT_SPLIT_OPERATOR)
     end
   end
 
   describe '.get_negative_numbers' do
     it 'returns true if it contains negative number' do
-      numbers = [1,2,-2]
+      numbers = [1, 2, -2]
 
-      expect(calculator.get_negative_numbers(numbers)).to match_array([-2])
+      expect(calculator.send(:get_negative_numbers, numbers)).to match_array([-2])
     end
 
     it 'returns false if it dose not contain negative number' do
-      numbers = [1,2,3,4]
+      numbers = [1, 2, 3, 4]
 
-      expect(calculator.get_negative_numbers(numbers)).to be_empty
+      expect(calculator.send(:get_negative_numbers, numbers)).to be_empty
     end
   end
 
   describe '.handle_negative_numbers' do
     it 'should raise an error if negative numbers are present' do
-      numbers = [1,-2,3]
+      numbers = [1, -2, 3]
 
-      expect { calculator.handle_negative_numbers(numbers) }.to raise_error(Errors::NegativeInputError)
+      expect { calculator.send(:handle_negative_numbers, numbers) }.to raise_error(Errors::NegativeInputError)
     end
 
     it 'should return nil if negative numbers are blank' do
-      numbers = [1,2,3,4]
+      numbers = [1, 2, 3, 4]
 
-      expect(calculator.handle_negative_numbers(numbers)).to be_nil
+      expect(calculator.send(:handle_negative_numbers, numbers)).to be_nil
     end
   end
 end
